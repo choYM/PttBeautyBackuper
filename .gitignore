@@ -1,5 +1,7 @@
 ################ Eclipse ignore ################
 
+**/target/**
+
 .metadata
 bin/
 tmp/

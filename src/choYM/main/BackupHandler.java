@@ -156,7 +156,7 @@ public class BackupHandler {
 
 			// 上一頁
 			currentPageUrl = PTT_PREFIX
-					+ currentPage.getElementsByClass("btn-group btn-group-paging").first().child(1).attr("href");
+					+ currentPage.getElementsByClass("btn-group-paging").first().child(1).attr("href");
 		} while (this.previousPage);
 		System.out.println("備份結束");
 	}
