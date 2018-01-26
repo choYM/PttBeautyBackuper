@@ -203,7 +203,7 @@ public class BackupHandler {
 
 		// 日期
 		Date date = new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy", Locale.US)
-				.parse(headers.get(2).getElementsByClass("article-meta-value").first().text());
+				.parse(headers.last().children().last().text());
 		String dateStr = new SimpleDateFormat("yyyy-MM-dd").format(date);
 		String timeStr = new SimpleDateFormat("HHmmss").format(date);
 
@@ -315,8 +315,8 @@ public class BackupHandler {
 
 		// 若發文時間超過備份時間24小時以上視為invalid
 		if (!post.getElementsByTag("a").isEmpty()) {
-			String postDateStr = HtmlUtil.loadHtml(PTT_PREFIX + post.getElementsByTag("a").attr("href"))
-					.getElementsByClass("article-metaline").get(2).child(1).text();
+			Document d = HtmlUtil.loadHtml(PTT_PREFIX + post.getElementsByTag("a").attr("href"));
+			String postDateStr = d.getElementsByClass("article-metaline").last().children().last().text();
 			Date postDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss yyyy", Locale.US).parse(postDateStr);
 			long diff = backupDate.getTime() - postDate.getTime();
 			long diffDays = diff / (24 * 60 * 60 * 1000);
